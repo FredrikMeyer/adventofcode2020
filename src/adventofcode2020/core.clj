@@ -7,6 +7,7 @@
             [adventofcode2020.day6 :as day6]
             [adventofcode2020.day7 :as day7]
             [adventofcode2020.day8 :as day8]
+            [adventofcode2020.day9 :as day9]
             [clojure.java.io :as io]))
 
 
@@ -71,3 +72,11 @@
 (defn day8-2-answer []
   (let [data (slurp (io/resource "day8.txt"))]
     (day8/part-2 data)))
+
+(defn day9-1-answer []
+  (let [data (slurp (io/resource "day9.txt"))]
+    (day9/part-1 data)))
+
+(defn day9-2-answer []
+  (let [data (slurp (io/resource "day9.txt"))]
+    (day9/part-2 data)))
