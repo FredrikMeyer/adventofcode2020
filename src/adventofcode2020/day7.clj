@@ -47,40 +47,18 @@ dotted black bags contain no other bags.")
     (dg/dfs reversed-graph vertex)))
 
 
-(defn build-tree [vertex graph]
-  (loop [current-tree []]
-    (let [children (dg/get-neigbours vertex graph)]))
-  )
-
-(defn sum-prod-weights [vertex graph]
-  (loop [stack (vector vertex)
-         visited []
-         discovered []
-         discovereds []]
-    (println visited)
-    (if (empty? stack)
-      [visited discovered discovereds]
-      (let [current-v (peek stack)
-            neigbours (dg/get-neighbour-edges current-v graph)
-            is-at-end (empty? neigbours)
-            new-discovered  (conj discovered current-v)
-            new-discovereds (if is-at-end (conj discovereds new-discovered) discovereds)
-            not-visited (filter #(not (dg/visited? (:to %) visited)) neigbours)
-            new-not-visited (if is-at-end (conj not-visited current-v) not-visited)
-            new-stack (into (pop stack) (map :to new-not-visited))]
-        ;; (when is-at-end (println new-discovered))
-        (if (dg/visited? current-v visited)
-          (recur new-stack visited (if is-at-end (pop new-discovered) new-discovered) new-discovereds)
-          (recur new-stack (conj visited current-v) (if is-at-end (pop new-discovered) new-discovered) new-discovereds)))
-      ))
-  )
-
-
-
 (defn part-1 [data]
   (->> data
        (parse-data)
        (build-graph)
        (find-parents :shiny-gold)
        (count)
+       (dec)))
+
+(defn part-2 [data]
+  (->> data
+       (parse-data)
+       (build-graph)
+       (dg/dfs-with-weights :shiny-gold)
+       (second)
        (dec)))

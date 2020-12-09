@@ -58,3 +58,7 @@
 (defn day7-1-answer []
   (let [data (slurp (io/resource "day7.txt"))]
     (day7/part-1 data)))
+
+(defn day7-2-answer []
+  (let [data (slurp (io/resource "day7.txt"))]
+    (day7/part-2 data)))
